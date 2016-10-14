@@ -3,6 +3,23 @@ import java.util.Objects;
 public class Admin extends Human{
     private CoffeeMachine coffeeMachine;
 
+    Admin(){
+        this.coffeeMachine = null;
+    }
+
+    Admin(String name, String surname, CoffeeMachine coffeeMachine){
+        super(name, surname);
+        this.coffeeMachine = coffeeMachine;
+    }
+
+    public CoffeeMachine getCoffeeMachine(){
+        return this.coffeeMachine;
+    }
+
+    public void setCoffeeMachine(CoffeeMachine coffeeMachine){
+        this.coffeeMachine = coffeeMachine;
+    }
+
     @Override
     public boolean equals(Object obj){
       if (getClass() != obj.getClass())
@@ -14,8 +31,8 @@ public class Admin extends Human{
     public int hashCode(){
         final int prime = 19;
         int result = 31;
-        result = prime * result + name.hashCode();
-        result = prime * result + surname.hashCode();
+        result = prime * result + getName().hashCode();
+        result = prime * result + getSurname().hashCode();
         return result;
     }
 

@@ -1,13 +1,30 @@
 
 public class User extends Human{
-    private Cash cash = new Cash();
+    private Cash cash;
+
+    User(){
+        this.cash = new Cash();
+    }
+
+    User(String name, String surname, Cash cash){
+        super(name, surname);
+        this.cash = cash;
+    }
+
+    public Cash getCash(){
+        return this.cash;
+    }
+
+    public void setCash(Cash cash){
+        this.cash = cash;
+    }
 
     @Override
     public boolean equals(Object obj){
         if (getClass() != obj.getClass())
             return false;
         User other = (User) obj;
-        return super.equals(obj) && cash.equals(other.cash);
+        return super.equals(other) && getCash().equals(other.getCash());
     }
 
     @Override
@@ -15,7 +32,7 @@ public class User extends Human{
         final int prime = 11;
         int result = 31;
         result = prime * result + super.hashCode();
-        result = prime * result + cash.hashCode();
+        result = prime * result + getCash().hashCode();
         return result;
     }
 

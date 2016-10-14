@@ -1,7 +1,32 @@
 
 public class Ingredient {
-    String name;
-    Cash cost;
+    private String name;
+    private Cash cost;
+
+    Ingredient(){
+        this.name = "N/A";
+        this.cost = new Cash(0, 0);
+    }
+
+    Ingredient(String name, Cash cost){
+        this.name = name;
+        this.cost = cost;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+    public Cash getCost(){
+        return this.cost;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setCost(Cash cost){
+        this.cost = cost;
+    }
 
     @Override
     public boolean equals(Object obj){
@@ -12,9 +37,9 @@ public class Ingredient {
         if (getClass() != obj.getClass())
             return false;
         Ingredient other = (Ingredient) obj;
-        if (name != other.name)
+        if (!getName().equals(other.getName()))
             return false;
-        if (!cost.equals(other.cost))
+        if (!getCost().equals(other.getCost()))
             return false;
         return true;
     }
@@ -23,8 +48,8 @@ public class Ingredient {
     public int hashCode(){
         final int prime = 23;
         int result = 31;
-        result = prime * result + name.hashCode();
-        result = prime * result + cost.hashCode() ;
+        result = prime * result + getName().hashCode();
+        result = prime * result + getCost().hashCode() ;
         return result;
     }
 

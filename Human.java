@@ -1,7 +1,33 @@
 
 public class Human {
-    String name = "vasya";
-    String surname = "polkov";
+    protected String name;
+    protected String surname;
+
+    Human(){
+        this.name = "N/A";
+        this.surname = "N/A";
+    }
+
+    Human(String name, String surname){
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getSurname(){
+        return this.surname;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setSurname(String surname){
+        this.surname = surname;
+    }
 
     @Override
     public boolean equals(Object obj){
@@ -12,9 +38,9 @@ public class Human {
         if (getClass() != obj.getClass())
             return false;
         Human other = (Human) obj;
-        if (name != other.name)
+        if (!getName().equals(other.getName()))
             return false;
-        if (surname != other.surname)
+        if (!getSurname().equals(other.getSurname()))
             return false;
         return true;
     }
@@ -23,8 +49,8 @@ public class Human {
     public int hashCode(){
         final int prime = 17;
         int result = 31;
-        result = prime * result + name.hashCode();
-        result = prime * result + surname.hashCode();
+        result = prime * result + getName().hashCode();
+        result = prime * result + getSurname().hashCode();
         return result;
     }
 

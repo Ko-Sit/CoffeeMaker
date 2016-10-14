@@ -1,7 +1,33 @@
 
 public class Cash {
-    int dollars = 1;
-    int cents = 2;
+    private int dollars;
+    private int cents;
+
+    Cash(){
+        this.dollars = 0;
+        this.cents = 0;
+    }
+
+    Cash(int dollars, int cents){
+        this.dollars = dollars;
+        this.cents = cents;
+    }
+
+    public int getDollars(){
+        return this.dollars;
+    }
+
+    public int getCents(){
+        return this.cents;
+    }
+
+    public void setDollars(int dollars){
+        this.dollars = dollars;
+    }
+
+    public void setCents(int cents){
+        this.cents = cents;
+    }
 
     @Override
     public boolean equals(Object obj){
@@ -12,9 +38,9 @@ public class Cash {
         if (getClass() != obj.getClass())
             return false;
         Cash other = (Cash) obj;
-        if (dollars != other.dollars)
+        if (getDollars() != other.getDollars())
             return false;
-        if (cents != other.cents)
+        if (getCents() != other.getCents())
             return false;
         return true;
     }
@@ -23,8 +49,8 @@ public class Cash {
     public int hashCode(){
         final int prime = 7;
         int result = 31;
-        result = prime * result + dollars;
-        result = prime * result + cents;
+        result = prime * result + getDollars();
+        result = prime * result + getCents();
         return result;
     }
 

@@ -1,8 +1,36 @@
 import java.util.ArrayList;
 
 public class CoffeeMachine {
+    //// TODO: 13-Oct-16 Убрать одмена?
     private Admin admin;
-    ArrayList<Ingredient> list;
+    private ArrayList<Ingredient> list;
+
+    // TODO: 13-Oct-16 нью одмен ор нот?
+    CoffeeMachine(){
+        this.list = new ArrayList<Ingredient>();
+        this.admin = new Admin();
+    }
+
+    CoffeeMachine(Admin admin, ArrayList<Ingredient> list){
+        this.admin = admin;
+        this.list = list;
+    }
+
+    public Admin getAdmin(){
+        return this.admin;
+    }
+
+    public ArrayList<Ingredient> getList(){
+        return this.list;
+    }
+
+    public void setAdmin(Admin admin){
+        this.admin = admin;
+    }
+
+    public void setList(ArrayList<Ingredient> list){
+        this.list = list;
+    }
 
     @Override
     public boolean equals(Object obj){
@@ -13,9 +41,9 @@ public class CoffeeMachine {
         if (getClass() != obj.getClass())
             return false;
         CoffeeMachine other = (CoffeeMachine) obj;
-        if (admin != other.admin)
+        if (!getAdmin().equals(other.getAdmin()))
             return false;
-        if (!list.equals(other.list))
+        if (!getList().equals(other.getList()))
             return false;
         return true;
     }
@@ -24,8 +52,8 @@ public class CoffeeMachine {
     public int hashCode(){
         final int prime = 7;
         int result = 31;
-        result = prime * result + admin.hashCode();
-        result = prime * result + list.hashCode();
+        result = prime * result + getAdmin().hashCode();
+        result = prime * result + getList().hashCode();
         return result;
     }
 
