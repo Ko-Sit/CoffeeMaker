@@ -1,5 +1,7 @@
 package by.nc.sitkin.coffeemachine.entities;
 
+import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
+
 public class Cash {
     protected int dollars;
     protected int cents;
@@ -9,7 +11,10 @@ public class Cash {
         this.cents = 0;
     }
 
-    public Cash(int dollars, int cents){
+    public Cash(int dollars, int cents) throws InvalidValueException{
+        if (dollars < 0 || cents < 0){
+            throw new InvalidValueException("Parameter is less than zero");
+        }
         this.dollars = dollars;
         this.cents = cents;
     }
@@ -22,11 +27,17 @@ public class Cash {
         return this.cents;
     }
 
-    public void setDollars(int dollars){
+    public void setDollars(int dollars) throws InvalidValueException{
+        if (dollars < 0) {
+            throw new InvalidValueException("Dollar value is less than zero");
+        }
         this.dollars = dollars;
     }
 
-    public void setCents(int cents){
+    public void setCents(int cents) throws InvalidValueException{
+        if (cents < 0){
+            throw new InvalidValueException("Cents value is less than zero");
+        }
         this.cents = cents;
     }
 

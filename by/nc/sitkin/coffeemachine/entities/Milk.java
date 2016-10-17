@@ -4,7 +4,7 @@ public class Milk extends Ingredient implements Countable{
     private static int counter = 0;
 
     public Milk(){
-        this.cost = new Cash(0, 0);
+        this.cost = new Cash();
         counter++;
     }
 
@@ -49,5 +49,9 @@ public class Milk extends Ingredient implements Countable{
     public String toString(){
         String string = "" + getClass().getSimpleName() + "@" + hashCode();
         return string;
+    }
+
+    protected void finalize ( ) {
+        decrement();
     }
 }

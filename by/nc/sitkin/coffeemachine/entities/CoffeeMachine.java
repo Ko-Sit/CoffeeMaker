@@ -3,11 +3,9 @@ package by.nc.sitkin.coffeemachine.entities;
 import java.util.ArrayList;
 
 public class CoffeeMachine {
-    //// TODO: 13-Oct-16 Убрать одмена?
     private Admin admin;
     private ArrayList<Ingredient> list;
 
-    // TODO: 13-Oct-16 нью одмен ор нот?
     public CoffeeMachine(){
         this.list = new ArrayList<Ingredient>();
     }
