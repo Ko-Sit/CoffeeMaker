@@ -2,7 +2,7 @@ package by.nc.sitkin.coffeemachine.entities;
 
 import java.util.ArrayList;
 
-public class Drink{
+public class Drink implements Comparable<Drink>{
     private ArrayList<Ingredient> list;
     private String name;
     private Cash cost;
@@ -14,6 +14,22 @@ public class Drink{
     public Drink(String name, Cash cost, ArrayList<Ingredient> list){
         this.name = name;
         this.list = list;
+        this.cost = cost;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Cash getCost() {
+        return this.cost;
+    }
+
+    public void setCost(Cash cost) {
         this.cost = cost;
     }
 
@@ -42,4 +58,16 @@ public class Drink{
         return result;
     }
 
+    @Override
+    public int compareTo(Drink obj) {
+        double money1 = this.cost.getDollars() + (double)(this.cost.getCents() / 100);
+        double money2 = obj.cost.getDollars() + (double)(obj.cost.getCents() / 100);
+        if (money1 > money2){
+            return 1;
+        }
+        else if (money1 < money2){
+            return -1;
+        }
+        return 0;
+    }
 }

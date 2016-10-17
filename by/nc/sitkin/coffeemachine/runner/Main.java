@@ -4,24 +4,11 @@ import by.nc.sitkin.coffeemachine.entities.*;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
+import java.util.Scanner;
 
 public class Main {
-
+    // TODO: 17-Oct-16 use ListIterator and GregorianCalendar
     public static void main(String[] args){
-        Cash cash;
-        try {
-            cash = new Cash(120, 45);
-        } catch (InvalidValueException e) {
-            System.out.println(e.toString());
-            cash = new Cash();
-        }
-        try {
-            cash.setDollars(-4);
-        } catch (InvalidValueException e) {
-            e.printStackTrace();
-        }
-        System.out.print(cash.getDollars());
 
     }
 }

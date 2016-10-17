@@ -1,34 +1,35 @@
 package by.nc.sitkin.coffeemachine.entities;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class CoffeeMachine {
     private Admin admin;
-    private ArrayList<Ingredient> list;
+    private HashSet<HashSet<Ingredient>> ingredientSet;
+
 
     public CoffeeMachine(){
-        this.list = new ArrayList<Ingredient>();
+        this.ingredientSet = new HashSet<>();
     }
 
-    public CoffeeMachine(Admin admin, ArrayList<Ingredient> list){
+    public CoffeeMachine(Admin admin, HashSet<HashSet<Ingredient>> ingredientSet){
         this.admin = admin;
-        this.list = list;
+        this.ingredientSet = ingredientSet;
     }
 
     public Admin getAdmin(){
         return this.admin;
     }
 
-    public ArrayList<Ingredient> getList(){
-        return this.list;
+    public HashSet<HashSet<Ingredient>> getIngredientSet(){
+        return this.ingredientSet;
     }
 
     public void setAdmin(Admin admin){
         this.admin = admin;
     }
 
-    public void setList(ArrayList<Ingredient> list){
-        this.list = list;
+    public void setIngredientSet(HashSet<HashSet<Ingredient>> ingredientSet){
+        this.ingredientSet = ingredientSet;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class CoffeeMachine {
         CoffeeMachine other = (CoffeeMachine) obj;
         if (!getAdmin().equals(other.getAdmin()))
             return false;
-        if (!getList().equals(other.getList()))
+        if (!getIngredientSet().equals(other.getIngredientSet()))
             return false;
         return true;
     }
@@ -52,7 +53,7 @@ public class CoffeeMachine {
         final int prime = 7;
         int result = 31;
         result = prime * result + getAdmin().hashCode();
-        result = prime * result + getList().hashCode();
+        result = prime * result + getIngredientSet().hashCode();
         return result;
     }
 
