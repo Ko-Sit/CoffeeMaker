@@ -3,9 +3,9 @@ package by.nc.sitkin.coffeemachine.entities;
 import java.util.ArrayList;
 
 public class Drink implements Comparable<Drink>{
-    private ArrayList<Ingredient> list;
     private String name;
     private Cash cost;
+    private ArrayList<Ingredient> list;
 
     public Drink(){
         this.list = new ArrayList<Ingredient>();

@@ -1,12 +1,15 @@
 package by.nc.sitkin.coffeemachine.runner;
 
-/**
- * Created by upsit on 18-Oct-16.
- */
+import by.nc.sitkin.coffeemachine.entities.Human;
+
 public class PayMoneyCommand implements Command {
+    public PayMoneyCommand(Human currentHuman) {
+
+    }
+
     @Override
     public void execute(){
-
+        // TODO: 19-Oct-16 написать команду
 
 
     }

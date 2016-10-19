@@ -11,6 +11,10 @@ public class CoffeeMachine {
         this.ingredientSet = new HashSet<>();
     }
 
+    public CoffeeMachine(HashSet<HashSet<Ingredient>> ingredientSet) {
+        this.ingredientSet = ingredientSet;
+    }
+
     public CoffeeMachine(Admin admin, HashSet<HashSet<Ingredient>> ingredientSet){
         this.admin = admin;
         this.ingredientSet = ingredientSet;
@@ -30,6 +34,12 @@ public class CoffeeMachine {
 
     public void setIngredientSet(HashSet<HashSet<Ingredient>> ingredientSet){
         this.ingredientSet = ingredientSet;
+    }
+
+
+    public void produceItem() {
+        // TODO: 19-Oct-16 произвести что нибудь
+
     }
 
     @Override
@@ -62,5 +72,4 @@ public class CoffeeMachine {
         String string = "" + getClass().getSimpleName() + "@" + hashCode();
         return string;
     }
-
 }

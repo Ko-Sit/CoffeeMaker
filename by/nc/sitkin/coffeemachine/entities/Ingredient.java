@@ -1,6 +1,6 @@
 package by.nc.sitkin.coffeemachine.entities;
 
-abstract class Ingredient {
+public abstract class Ingredient {
     protected Cash cost;
 
     public Cash getCost(){
