@@ -1,12 +1,19 @@
 package by.nc.sitkin.coffeemachine.runner;
 
 import by.nc.sitkin.coffeemachine.entities.Cash;
+import by.nc.sitkin.coffeemachine.entities.Human;
 import by.nc.sitkin.coffeemachine.entities.User;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CreateUserCommand implements Command {
+    private ArrayList<Human> humans;
+
+    public CreateUserCommand(ArrayList<Human> humans) {
+        this.humans = humans;
+    }
 
     @Override
     public void execute(){
@@ -33,6 +40,6 @@ public class CreateUserCommand implements Command {
             cash = new Cash();
         }
 
-        User user = new User(name, surname, cash);
+        humans.add(new User(name, surname, cash));
     }
 }

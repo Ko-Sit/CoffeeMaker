@@ -2,14 +2,13 @@ package by.nc.sitkin.coffeemachine.entities;
 
 public class Admin extends Human{
     private CoffeeMachine coffeeMachine;
-
+    //todo обработчик неустановленной кофемашины
     public Admin(){
 
     }
 
-    public Admin(String name, String surname, CoffeeMachine coffeeMachine){
+    public Admin(String name, String surname){
         super(name, surname);
-        this.coffeeMachine = coffeeMachine;
     }
 
     public CoffeeMachine getCoffeeMachine(){
