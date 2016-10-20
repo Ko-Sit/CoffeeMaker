@@ -20,8 +20,23 @@ public class SelectDrinkCommand implements Command {
         System.out.println("-----------------");
         System.out.println("Input number:");
         int chosenDrink = scanner.nextInt();
-        // TODO: 19-Oct-16 выбор напитка и возврат
-        coffeeMachine.produceItem();
+        CHOICE choice = null;
+        switch (chosenDrink){
+            case 1:
+                choice = CHOICE.blackCoffee;
+                break;
+            case 2:
+                choice = CHOICE.dulcetCoffee;
+                break;
+            case 3:
+                choice = CHOICE.milkyCoffee;
+                break;
+            default:
+                System.out.println("Wrong number!");
+                return;
+        }
+
+        coffeeMachine.produceItem(choice);
 
     }
 }

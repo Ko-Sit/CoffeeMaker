@@ -1,21 +1,24 @@
 package by.nc.sitkin.coffeemachine.entities;
 
-import java.util.HashSet;
+import by.nc.sitkin.coffeemachine.runner.CHOICE;
+
+import java.awt.*;
+import java.util.*;
 
 public class CoffeeMachine {
     private Admin admin;
-    private HashSet<HashSet<Ingredient>> ingredientSet;
+    private ArrayList<ArrayList<Ingredient>> ingredientSet;
 
 
     public CoffeeMachine(){
-        this.ingredientSet = new HashSet<>();
+        this.ingredientSet = new ArrayList<>();
     }
 
-    public CoffeeMachine(HashSet<HashSet<Ingredient>> ingredientSet) {
+    public CoffeeMachine(ArrayList<ArrayList<Ingredient>> ingredientSet) {
         this.ingredientSet = ingredientSet;
     }
 
-    public CoffeeMachine(Admin admin, HashSet<HashSet<Ingredient>> ingredientSet){
+    public CoffeeMachine(Admin admin, ArrayList<ArrayList<Ingredient>> ingredientSet){
         this.admin = admin;
         this.ingredientSet = ingredientSet;
     }
@@ -24,7 +27,7 @@ public class CoffeeMachine {
         return this.admin;
     }
 
-    public HashSet<HashSet<Ingredient>> getIngredientSet(){
+    public ArrayList<ArrayList<Ingredient>> getIngredientSet(){
         return this.ingredientSet;
     }
 
@@ -32,14 +35,33 @@ public class CoffeeMachine {
         this.admin = admin;
     }
 
-    public void setIngredientSet(HashSet<HashSet<Ingredient>> ingredientSet){
+    public void setIngredientSet(ArrayList<ArrayList<Ingredient>> ingredientSet){
         this.ingredientSet = ingredientSet;
     }
 
 
-    public void produceItem() {
+    public void produceItem(CHOICE choice) {
         // TODO: 19-Oct-16 произвести что нибудь
+        int dollars = 0;
+        int cents = 0;
+        for (ArrayList<Ingredient> iter : ingredientSet){
+            dollars += iter.get(0).getCost().dollars;
+            cents += iter.get(0).getCost().cents;
+            iter.remove(0);
+        }
 
+
+
+        switch (choice){
+            case blackCoffee:
+
+                //Drink blackCoffee = new Drink("blackcoffee", )
+                break;
+            case dulcetCoffee:
+                break;
+            case milkyCoffee:
+                break;
+        }
     }
 
     @Override

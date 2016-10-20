@@ -4,10 +4,10 @@ import by.nc.sitkin.coffeemachine.entities.Admin;
 import by.nc.sitkin.coffeemachine.entities.Human;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 
-public class FillMachine implements Command {
+public class FillMachineCommand implements Command {
     private Admin currentHuman;
 
-    public FillMachine(Admin currentHuman) {
+    public FillMachineCommand(Admin currentHuman) {
         this.currentHuman = currentHuman;
     }
 
@@ -17,7 +17,7 @@ public class FillMachine implements Command {
             currentHuman.fillMachine();
         }
         catch (InvalidValueException e){
-            System.out.println("admin broke it. c");
+            System.out.println("admin broke it.");
         }
     }
 }

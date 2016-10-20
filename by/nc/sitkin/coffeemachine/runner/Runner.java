@@ -14,56 +14,58 @@ public class Runner {
         Human currentHuman;
         // empty machine default, fill by admin before using
         CoffeeMachine coffeeMachine = new CoffeeMachine();
+        while(true){
+            Menu startMenu = new Menu();
+            startMenu.setCommand("create user", new CreateUserCommand(humans));
+            startMenu.setCommand("create admin", new CreateAdminCommand(humans, coffeeMachine));
+            startMenu.setCommand("change human", new ChangeHumanCommand(humans));
+            startMenu.setCommand("exit", new ExitCommand());
 
-        Menu startMenu = new Menu();
-        startMenu.setCommand("create user", new CreateUserCommand(humans));
-        startMenu.setCommand("create admin", new CreateAdminCommand(humans, coffeeMachine));
-        startMenu.setCommand("change human", new ChangeHumanCommand(humans));
-        startMenu.setCommand("exit", new ExitCommand());
-
-        while (!nextCommand.equals("change human")) {
-            startMenu.printMenu();
-            nextCommand = scanner.nextLine().trim().toLowerCase();
-            try {
-                startMenu.runCommand(nextCommand);
-            } catch (WrongCommandException e) {
-                System.out.println("No such command!");
+            while (!nextCommand.equals("change human")) {
+                startMenu.printMenu();
+                nextCommand = scanner.nextLine().trim().toLowerCase();
+                if (nextCommand.equals("change human") && humans.isEmpty()){
+                    System.out.println("Input some humans first!");
+                    nextCommand = "";
+                    continue;
+                }
+                try {
+                    startMenu.runCommand(nextCommand);
+                } catch (WrongCommandException e) {
+                    System.out.println("No such command!");
+                }
             }
-        }
-        currentHuman = ChangeHumanCommand.getCurrentHuman();
-        System.out.println("Reached it!");
-        // нужно рефрешить юзеров и админов в командах
-        Menu userMenu = new Menu();
-        Menu adminMenu = new Menu();
+            currentHuman = ChangeHumanCommand.getCurrentHuman();
+            System.out.println("Reached it!");
+            Menu userMenu = new Menu();
+            Menu adminMenu = new Menu();
 
-            while (true) {
+            while (!nextCommand.equals("back")) {
                 if (currentHuman instanceof Admin) {
                     //right cast?
-                    adminMenu.setCommand("fill machine", new FillMachine((Admin)currentHuman));
+                    adminMenu.setCommand("fill machine", new FillMachineCommand((Admin) currentHuman));
+                    adminMenu.setCommand("back", new BackCommand());
                     adminMenu.printMenu();
-                }
-                else{
+                } else {
                     userMenu.setCommand("select drink", new SelectDrinkCommand(coffeeMachine));
-                    userMenu.setCommand("pay money", new PayMoneyCommand(currentHuman));
+                    userMenu.setCommand("pay money", new PayMoneyCommand((User)currentHuman));
+                    userMenu.setCommand("back", new BackCommand());
                     userMenu.printMenu();
                 }
                 nextCommand = scanner.nextLine().trim().toLowerCase();
                 try {
                     userMenu.runCommand(nextCommand);
-                    //Drink menu
 
-
-                    break;
                 } catch (WrongCommandException e) {
-                    try{
+                    try {
                         adminMenu.runCommand(nextCommand);
-                        break;
-                    }
-                    catch (WrongCommandException w){
+
+                    } catch (WrongCommandException w) {
                         System.out.println("No such command!");
                     }
                 }
             }
 
+        }
     }
 }

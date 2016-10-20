@@ -1,10 +1,12 @@
 package by.nc.sitkin.coffeemachine.runner;
 
-import by.nc.sitkin.coffeemachine.entities.Human;
+import by.nc.sitkin.coffeemachine.entities.User;
 
 public class PayMoneyCommand implements Command {
-    public PayMoneyCommand(Human currentHuman) {
+    private User currentHuman;
 
+    public PayMoneyCommand(User currentHuman) {
+        this.currentHuman = currentHuman;
     }
 
     @Override

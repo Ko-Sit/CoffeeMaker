@@ -2,12 +2,13 @@ package by.nc.sitkin.coffeemachine.entities;
 
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 
 public class Admin extends Human{
     private CoffeeMachine coffeeMachine;
-    //todo обработчик неустановленной кофемашины
+
     public Admin(){
 
     }
@@ -27,9 +28,9 @@ public class Admin extends Human{
     public void fillMachine() throws InvalidValueException{
         Random random = new Random();
         // TODO: 19-Oct-16  переписать в фабрику
-        HashSet<Ingredient> coffeeSet = new HashSet<>();
-        HashSet<Ingredient> sugarSet = new HashSet<>();
-        HashSet<Ingredient> milkSet = new HashSet<>();
+        ArrayList<Ingredient> coffeeSet = new ArrayList<>();
+        ArrayList<Ingredient> sugarSet = new ArrayList<>();
+        ArrayList<Ingredient> milkSet = new ArrayList<>();
         Cash coffeeCost = new Cash(15, 30);
         Cash sugarCost = new Cash(0, 10);
         Cash milkCost = new Cash(2, 45);
@@ -40,11 +41,12 @@ public class Admin extends Human{
             milkSet.add(new Milk(milkCost));
         }
 
-        HashSet<HashSet<Ingredient>> ingredientSet = new HashSet<>();
+        ArrayList<ArrayList<Ingredient>> ingredientSet = new ArrayList<>();
         ingredientSet.add(coffeeSet);
         ingredientSet.add(sugarSet);
         ingredientSet.add(milkSet);
         this.coffeeMachine.setIngredientSet(ingredientSet);
+        System.out.println("CoffeeMachine was refilled.");
 
     }
 
