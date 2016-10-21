@@ -14,13 +14,16 @@ public class Runner {
         Human currentHuman;
         // empty machine default, fill by admin before using
         CoffeeMachine coffeeMachine = new CoffeeMachine();
-        while(true){
-            Menu startMenu = new Menu();
-            startMenu.setCommand("create user", new CreateUserCommand(humans));
-            startMenu.setCommand("create admin", new CreateAdminCommand(humans, coffeeMachine));
-            startMenu.setCommand("change human", new ChangeHumanCommand(humans));
-            startMenu.setCommand("exit", new ExitCommand());
 
+        Menu startMenu = new Menu();
+        startMenu.setCommand("create user", new CreateUserCommand(humans));
+        startMenu.setCommand("create admin", new CreateAdminCommand(humans, coffeeMachine));
+        startMenu.setCommand("change human", new ChangeHumanCommand(humans));
+        startMenu.setCommand("exit", new ExitCommand());
+        Menu userMenu = new Menu();
+        Menu adminMenu = new Menu();
+        while(true){
+            //cделать доступность change после ввода пользователя?
             while (!nextCommand.equals("change human")) {
                 startMenu.printMenu();
                 nextCommand = scanner.nextLine().trim().toLowerCase();
@@ -36,13 +39,9 @@ public class Runner {
                 }
             }
             currentHuman = ChangeHumanCommand.getCurrentHuman();
-            System.out.println("Reached it!");
-            Menu userMenu = new Menu();
-            Menu adminMenu = new Menu();
-
+            //need to refresh parameters in commands
             while (!nextCommand.equals("back")) {
                 if (currentHuman instanceof Admin) {
-                    //right cast?
                     adminMenu.setCommand("fill machine", new FillMachineCommand((Admin) currentHuman));
                     adminMenu.setCommand("back", new BackCommand());
                     adminMenu.printMenu();

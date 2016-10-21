@@ -23,15 +23,14 @@ public class CreateAdminCommand implements Command{
         int dollars;
         int cents;
         Scanner scanner = new Scanner(System.in);
-        CoffeeMachine coffeeMachine = new CoffeeMachine();
 
         System.out.println("Name:");
         name = scanner.next();
         System.out.println("Surname:");
         surname = scanner.next();
         Admin admin = new Admin(name, surname);
-        admin.setCoffeeMachine(coffeeMachine);
-        coffeeMachine.setAdmin(admin);
+        admin.setCoffeeMachine(this.coffeeMachine);
+        this.coffeeMachine.setAdmin(admin);
         humans.add(admin);
     }
 

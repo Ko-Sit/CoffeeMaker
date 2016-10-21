@@ -2,13 +2,11 @@ package by.nc.sitkin.coffeemachine.entities;
 
 import by.nc.sitkin.coffeemachine.runner.CHOICE;
 
-import java.awt.*;
 import java.util.*;
 
 public class CoffeeMachine {
     private Admin admin;
     private ArrayList<ArrayList<Ingredient>> ingredientSet;
-
 
     public CoffeeMachine(){
         this.ingredientSet = new ArrayList<>();
@@ -39,9 +37,13 @@ public class CoffeeMachine {
         this.ingredientSet = ingredientSet;
     }
 
-
     public void produceItem(CHOICE choice) {
         // TODO: 19-Oct-16 произвести что нибудь
+        //падает изза null coffemachine
+        if (this.ingredientSet.isEmpty()){
+            System.out.println("CoffeeMachine is empty, call admin");
+            return;
+        }
         int dollars = 0;
         int cents = 0;
         for (ArrayList<Ingredient> iter : ingredientSet){
@@ -49,7 +51,7 @@ public class CoffeeMachine {
             cents += iter.get(0).getCost().cents;
             iter.remove(0);
         }
-
+        System.out.println("You'll pay:" + dollars + "." + cents);
 
 
         switch (choice){
@@ -62,6 +64,8 @@ public class CoffeeMachine {
             case milkyCoffee:
                 break;
         }
+
+
     }
 
     @Override

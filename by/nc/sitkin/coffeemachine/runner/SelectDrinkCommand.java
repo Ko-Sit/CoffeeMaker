@@ -2,8 +2,6 @@ package by.nc.sitkin.coffeemachine.runner;
 
 import by.nc.sitkin.coffeemachine.entities.CoffeeMachine;
 
-import java.util.Scanner;
-
 public class SelectDrinkCommand implements Command {
     private CoffeeMachine coffeeMachine;
 
@@ -13,13 +11,12 @@ public class SelectDrinkCommand implements Command {
 
     @Override
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
+        TypeConverter converter = new TypeConverter();
         System.out.println("1.coffee");
         System.out.println("2.coffee + sugar");
         System.out.println("3.coffee + milk");
         System.out.println("-----------------");
-        System.out.println("Input number:");
-        int chosenDrink = scanner.nextInt();
+        int chosenDrink = converter.getInt("Input number");
         CHOICE choice = null;
         switch (chosenDrink){
             case 1:

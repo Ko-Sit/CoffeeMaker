@@ -23,23 +23,23 @@ public class CreateUserCommand implements Command {
         int cents;
         Cash cash;
         Scanner scanner = new Scanner(System.in);
-
+        TypeConverter converter = new TypeConverter();
         System.out.println("Name:");
         name = scanner.next();
         System.out.println("Surname:");
         surname = scanner.next();
-        System.out.println("dollars:");
-        dollars = scanner.nextInt();
-        System.out.println("cents:");
-        cents = scanner.nextInt();
 
-        try {
-            cash = new Cash(dollars, cents);
-        } catch (InvalidValueException e) {
-            e.printStackTrace();
-            cash = new Cash();
+        while (true) {
+            try {
+                dollars = converter.getInt("dollars");
+                cents = converter.getInt("cents");
+                cash = new Cash(dollars, cents);
+                break;
+            } catch (InvalidValueException e) {
+                //e.printStackTrace();
+                System.out.println("Wrong values!");
+            }
         }
-
         humans.add(new User(name, surname, cash));
     }
 }

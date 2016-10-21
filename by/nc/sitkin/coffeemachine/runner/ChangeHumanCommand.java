@@ -20,6 +20,7 @@ public class ChangeHumanCommand implements Command {
     @Override
     public void execute(){
         int number = 1;
+        TypeConverter converter = new TypeConverter();
         Scanner scanner = new Scanner(System.in);
 
         for (Human human : humans){
@@ -28,8 +29,7 @@ public class ChangeHumanCommand implements Command {
             number++;
         }
 
-        System.out.println("Select number:");
-        Integer chosenUserId = scanner.nextInt() - 1;
+        Integer chosenUserId = converter.getInt("Select number") - 1;
         currentHuman = humans.get(chosenUserId);
     }
 }
