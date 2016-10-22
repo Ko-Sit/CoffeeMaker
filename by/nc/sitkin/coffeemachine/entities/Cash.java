@@ -3,8 +3,8 @@ package by.nc.sitkin.coffeemachine.entities;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 
 public class Cash {
-    protected int dollars;
-    protected int cents;
+    int dollars;
+    int cents;
 
     public Cash(){
         this.dollars = 0;
@@ -15,8 +15,8 @@ public class Cash {
         if (dollars < 0 || cents < 0){
             throw new InvalidValueException("Parameter is less than zero");
         }
-        this.dollars = dollars;
-        this.cents = cents;
+        this.dollars = dollars + cents / 100;
+        this.cents = cents % 100;
     }
 
     public int getDollars(){
@@ -38,7 +38,8 @@ public class Cash {
         if (cents < 0){
             throw new InvalidValueException("Cents value is less than zero");
         }
-        this.cents = cents;
+        this.dollars += cents / 100;
+        this.cents = cents % 100;
     }
 
     @Override
@@ -52,9 +53,7 @@ public class Cash {
         Cash other = (Cash) obj;
         if (getDollars() != other.getDollars())
             return false;
-        if (getCents() != other.getCents())
-            return false;
-        return true;
+        return getCents() == other.getCents();
     }
 
     @Override
@@ -68,8 +67,7 @@ public class Cash {
 
     @Override
     public String toString(){
-        String string = "" + getClass().getSimpleName() + "@" + hashCode();
-        return string;
+        return "" + getClass().getSimpleName() + "@" + hashCode();
     }
 
 }

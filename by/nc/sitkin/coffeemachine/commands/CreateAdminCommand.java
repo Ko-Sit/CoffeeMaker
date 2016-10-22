@@ -1,17 +1,17 @@
-package by.nc.sitkin.coffeemachine.runner;
+package by.nc.sitkin.coffeemachine.commands;
 
 import by.nc.sitkin.coffeemachine.entities.Admin;
 import by.nc.sitkin.coffeemachine.entities.CoffeeMachine;
 import by.nc.sitkin.coffeemachine.entities.Human;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class CreateAdminCommand implements Command{
-    private ArrayList<Human> humans;
+public class CreateAdminCommand implements Command {
+    private List<Human> humans;
     private CoffeeMachine coffeeMachine;
 
-    public CreateAdminCommand(ArrayList<Human> humans, CoffeeMachine coffeeMachine) {
+    public CreateAdminCommand(List<Human> humans, CoffeeMachine coffeeMachine) {
         this.humans = humans;
         this.coffeeMachine = coffeeMachine;
     }
@@ -20,8 +20,6 @@ public class CreateAdminCommand implements Command{
     public void execute(){
         String name;
         String surname;
-        int dollars;
-        int cents;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Name:");

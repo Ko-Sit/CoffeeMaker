@@ -1,6 +1,8 @@
-package by.nc.sitkin.coffeemachine.runner;
+package by.nc.sitkin.coffeemachine.commands;
 
+import by.nc.sitkin.coffeemachine.converters.TypeConverter;
 import by.nc.sitkin.coffeemachine.entities.CoffeeMachine;
+import by.nc.sitkin.coffeemachine.enums.Choice;
 
 public class SelectDrinkCommand implements Command {
     private CoffeeMachine coffeeMachine;
@@ -17,16 +19,16 @@ public class SelectDrinkCommand implements Command {
         System.out.println("3.coffee + milk");
         System.out.println("-----------------");
         int chosenDrink = converter.getInt("Input number");
-        CHOICE choice = null;
+        Choice choice;
         switch (chosenDrink){
             case 1:
-                choice = CHOICE.blackCoffee;
+                choice = Choice.BLACKCOFFEE;
                 break;
             case 2:
-                choice = CHOICE.dulcetCoffee;
+                choice = Choice.DULCETCOFFEE;
                 break;
             case 3:
-                choice = CHOICE.milkyCoffee;
+                choice = Choice.MILKYCOFFEE;
                 break;
             default:
                 System.out.println("Wrong number!");

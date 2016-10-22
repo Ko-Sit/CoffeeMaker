@@ -1,15 +1,15 @@
-package by.nc.sitkin.coffeemachine.runner;
+package by.nc.sitkin.coffeemachine.commands;
 
+import by.nc.sitkin.coffeemachine.converters.TypeConverter;
 import by.nc.sitkin.coffeemachine.entities.Human;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 public class ChangeHumanCommand implements Command {
     private static Human currentHuman;
-    private ArrayList<Human> humans;
+    private List<Human> humans;
 
-    public ChangeHumanCommand(ArrayList<Human> humans){
+    public ChangeHumanCommand(List<Human> humans){
         this.humans = humans;
     }
 
@@ -21,7 +21,6 @@ public class ChangeHumanCommand implements Command {
     public void execute(){
         int number = 1;
         TypeConverter converter = new TypeConverter();
-        Scanner scanner = new Scanner(System.in);
 
         for (Human human : humans){
             System.out.println(number + ".(" + human.getClass().getSimpleName() +

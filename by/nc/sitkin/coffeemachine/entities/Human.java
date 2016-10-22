@@ -41,9 +41,7 @@ public class Human {
         Human other = (Human) obj;
         if (!getName().equals(other.getName()))
             return false;
-        if (!getSurname().equals(other.getSurname()))
-            return false;
-        return true;
+        return getSurname().equals(other.getSurname());
     }
 
     @Override
@@ -57,8 +55,7 @@ public class Human {
 
     @Override
     public String toString(){
-        String string = "" + getClass().getSimpleName() + "@" + hashCode();
-        return string;
+        return "" + getClass().getSimpleName() + "@" + hashCode();
     }
 }
 

@@ -1,4 +1,4 @@
-package by.nc.sitkin.coffeemachine.runner;
+package by.nc.sitkin.coffeemachine.converters;
 
 import java.util.Scanner;
 

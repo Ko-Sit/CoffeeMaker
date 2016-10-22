@@ -1,17 +1,18 @@
-package by.nc.sitkin.coffeemachine.runner;
+package by.nc.sitkin.coffeemachine.commands;
 
+import by.nc.sitkin.coffeemachine.converters.TypeConverter;
 import by.nc.sitkin.coffeemachine.entities.Cash;
 import by.nc.sitkin.coffeemachine.entities.Human;
 import by.nc.sitkin.coffeemachine.entities.User;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CreateUserCommand implements Command {
-    private ArrayList<Human> humans;
+    private List<Human> humans;
 
-    public CreateUserCommand(ArrayList<Human> humans) {
+    public CreateUserCommand(List<Human> humans) {
         this.humans = humans;
     }
 

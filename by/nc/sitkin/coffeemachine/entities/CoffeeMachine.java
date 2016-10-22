@@ -1,22 +1,23 @@
 package by.nc.sitkin.coffeemachine.entities;
 
-import by.nc.sitkin.coffeemachine.runner.CHOICE;
+import by.nc.sitkin.coffeemachine.files.FileWorker;
+import by.nc.sitkin.coffeemachine.enums.Choice;
 
 import java.util.*;
 
 public class CoffeeMachine {
     private Admin admin;
-    private ArrayList<ArrayList<Ingredient>> ingredientSet;
+    private List<List<Ingredient>> ingredientSet;
 
     public CoffeeMachine(){
         this.ingredientSet = new ArrayList<>();
     }
 
-    public CoffeeMachine(ArrayList<ArrayList<Ingredient>> ingredientSet) {
+    public CoffeeMachine(List<List<Ingredient>> ingredientSet) {
         this.ingredientSet = ingredientSet;
     }
 
-    public CoffeeMachine(Admin admin, ArrayList<ArrayList<Ingredient>> ingredientSet){
+    public CoffeeMachine(Admin admin, List<List<Ingredient>> ingredientSet){
         this.admin = admin;
         this.ingredientSet = ingredientSet;
     }
@@ -25,7 +26,7 @@ public class CoffeeMachine {
         return this.admin;
     }
 
-    public ArrayList<ArrayList<Ingredient>> getIngredientSet(){
+    public List<List<Ingredient>> getIngredientSet(){
         return this.ingredientSet;
     }
 
@@ -33,38 +34,42 @@ public class CoffeeMachine {
         this.admin = admin;
     }
 
-    public void setIngredientSet(ArrayList<ArrayList<Ingredient>> ingredientSet){
+    public void setIngredientSet(List<List<Ingredient>> ingredientSet){
         this.ingredientSet = ingredientSet;
     }
 
-    public void produceItem(CHOICE choice) {
-        // TODO: 19-Oct-16 произвести что нибудь
-        //падает изза null coffemachine
+    public void produceItem(Choice choice) {
         if (this.ingredientSet.isEmpty()){
             System.out.println("CoffeeMachine is empty, call admin");
             return;
         }
         int dollars = 0;
         int cents = 0;
-        for (ArrayList<Ingredient> iter : ingredientSet){
-            dollars += iter.get(0).getCost().dollars;
-            cents += iter.get(0).getCost().cents;
-            iter.remove(0);
+
+        ListIterator<List<Ingredient>> iterator = this.ingredientSet.listIterator();
+        List<Ingredient> list;
+
+        while (iterator.hasNext()){
+            list = iterator.next();
+            dollars += list.get(0).getCost().dollars;
+            cents += list.get(0).getCost().cents;
+            list.remove(0);
         }
+        dollars += cents / 100;
+        cents %= 100;
         System.out.println("You'll pay:" + dollars + "." + cents);
 
+        FileWorker.update("totalPrice.txt", dollars, cents);
 
         switch (choice){
-            case blackCoffee:
-
-                //Drink blackCoffee = new Drink("blackcoffee", )
+            case BLACKCOFFEE:
+                //Drink BLACKCOFFEE = new Drink("blackcoffee", )
                 break;
-            case dulcetCoffee:
+            case DULCETCOFFEE:
                 break;
-            case milkyCoffee:
+            case MILKYCOFFEE:
                 break;
         }
-
 
     }
 
@@ -79,9 +84,7 @@ public class CoffeeMachine {
         CoffeeMachine other = (CoffeeMachine) obj;
         if (!getAdmin().equals(other.getAdmin()))
             return false;
-        if (!getIngredientSet().equals(other.getIngredientSet()))
-            return false;
-        return true;
+        return getIngredientSet().equals(other.getIngredientSet());
     }
 
     @Override
@@ -95,7 +98,6 @@ public class CoffeeMachine {
 
     @Override
     public String toString(){
-        String string = "" + getClass().getSimpleName() + "@" + hashCode();
-        return string;
+        return "" + getClass().getSimpleName() + "@" + hashCode();
     }
 }

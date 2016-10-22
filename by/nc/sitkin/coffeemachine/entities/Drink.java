@@ -1,17 +1,18 @@
 package by.nc.sitkin.coffeemachine.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Drink implements Comparable<Drink>{
     private String name;
     private Cash cost;
-    private ArrayList<Ingredient> list;
+    private List<Ingredient> list;
 
     public Drink(){
-        this.list = new ArrayList<Ingredient>();
+        this.list = new ArrayList<>();
     }
 
-    public Drink(String name, Cash cost, ArrayList<Ingredient> list){
+    public Drink(String name, Cash cost, List<Ingredient> list){
         this.name = name;
         this.list = list;
         this.cost = cost;
@@ -33,11 +34,11 @@ public class Drink implements Comparable<Drink>{
         this.cost = cost;
     }
 
-    public ArrayList<Ingredient> getList(){
+    public List<Ingredient> getList(){
         return this.list;
     }
 
-    public void setList(ArrayList<Ingredient> list){
+    public void setList(List<Ingredient> list){
         this.list = list;
     }
 

@@ -1,4 +1,4 @@
-package by.nc.sitkin.coffeemachine.runner;
+package by.nc.sitkin.coffeemachine.commands;
 
 public class ExitCommand implements Command {
 

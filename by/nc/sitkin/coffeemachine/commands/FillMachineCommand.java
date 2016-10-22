@@ -1,7 +1,6 @@
-package by.nc.sitkin.coffeemachine.runner;
+package by.nc.sitkin.coffeemachine.commands;
 
 import by.nc.sitkin.coffeemachine.entities.Admin;
-import by.nc.sitkin.coffeemachine.entities.Human;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 
 public class FillMachineCommand implements Command {

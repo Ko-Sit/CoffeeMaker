@@ -30,9 +30,7 @@ public class Coffee extends Ingredient implements Countable{
         if (getClass() != obj.getClass())
             return false;
         Coffee other = (Coffee) obj;
-        if (!getCost().equals(other.getCost()))
-            return false;
-        return true;
+        return getCost().equals(other.getCost());
     }
 
     @Override
@@ -47,8 +45,7 @@ public class Coffee extends Ingredient implements Countable{
 
     @Override
     public String toString(){
-        String string = "" + getClass().getSimpleName() + "@" + hashCode();
-        return string;
+        return "" + getClass().getSimpleName() + "@" + hashCode();
     }
 
     protected void finalize ( ) {

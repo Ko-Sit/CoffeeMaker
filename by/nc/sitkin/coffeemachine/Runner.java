@@ -1,14 +1,19 @@
-package by.nc.sitkin.coffeemachine.runner;
+package by.nc.sitkin.coffeemachine;
 
+import by.nc.sitkin.coffeemachine.commands.*;
 import by.nc.sitkin.coffeemachine.entities.*;
 import by.nc.sitkin.coffeemachine.exceptions.*;
+import by.nc.sitkin.coffeemachine.menus.Menu;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Runner {
-    public static void main(String args[]) throws InvalidValueException {
-        ArrayList<Human> humans = new ArrayList<>();
+    public static void main(String args[]) throws InvalidValueException, FileNotFoundException {
+
+        List<Human> humans = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         String nextCommand = "";
         Human currentHuman;
@@ -23,7 +28,7 @@ public class Runner {
         Menu userMenu = new Menu();
         Menu adminMenu = new Menu();
         while(true){
-            //cделать доступность change после ввода пользователя?
+            //change visible?
             while (!nextCommand.equals("change human")) {
                 startMenu.printMenu();
                 nextCommand = scanner.nextLine().trim().toLowerCase();

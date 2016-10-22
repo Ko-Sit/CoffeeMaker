@@ -1,4 +1,5 @@
-package by.nc.sitkin.coffeemachine.runner;
+package by.nc.sitkin.coffeemachine.commands;
+
 
 /**
  * Created by upsit on 20-Oct-16.
