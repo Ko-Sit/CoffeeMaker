@@ -20,6 +20,7 @@ public class ChangeHumanCommand implements Command {
     @Override
     public void execute(){
         int number = 1;
+        int chosenUserId;
         TypeConverter converter = new TypeConverter();
 
         for (Human human : humans){
@@ -28,7 +29,16 @@ public class ChangeHumanCommand implements Command {
             number++;
         }
 
-        Integer chosenUserId = converter.getInt("Select number") - 1;
+        while (true) {
+            chosenUserId = converter.getInt("Select number") - 1;
+            if (chosenUserId >= 0 && chosenUserId < humans.size()){
+                break;
+            }
+            else {
+                System.out.println("Invalid value!");
+            }
+        }
+
         currentHuman = humans.get(chosenUserId);
     }
 }
