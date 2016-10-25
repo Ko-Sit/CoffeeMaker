@@ -17,7 +17,8 @@ public class PayMoneyCommand implements Command {
 
     @Override
     public void execute(){
-
+        int dollars;
+        int cents;
         String resultStr;
         try {
             resultStr = FileWorker.read("totalPrice.txt");
@@ -26,8 +27,14 @@ public class PayMoneyCommand implements Command {
             resultStr = "0.0";
         }
         String result[] = resultStr.split(Pattern.quote("."));
-        int dollars = currentHuman.getCash().getDollars() - Integer.parseInt(result[0]);
-        int cents = currentHuman.getCash().getCents() - Integer.parseInt(result[1]);
+        try {
+            dollars = currentHuman.getCash().getDollars() - Integer.parseInt(result[0]);
+            cents = currentHuman.getCash().getCents() - Integer.parseInt(result[1]);
+        }
+        catch (NumberFormatException e){
+            System.out.println("You didn't buy smth yet!");
+            return;
+        }
         if (cents < 0){
             dollars = dollars - 1;
             cents = 100 - cents;

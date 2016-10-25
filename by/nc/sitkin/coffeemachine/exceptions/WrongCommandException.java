@@ -12,7 +12,7 @@ public class WrongCommandException extends Exception{
     }
 
     public String toString(){
-        return "InvalidValueException(" + this.message + ")";
+        return "WrongCommandException(" + this.message + ")";
 
     }
 }

@@ -7,7 +7,6 @@ import by.nc.sitkin.coffeemachine.menus.CurrentMenu;
 import by.nc.sitkin.coffeemachine.serial.Serializer;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class Runner {

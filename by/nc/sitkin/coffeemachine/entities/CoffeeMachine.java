@@ -1,6 +1,7 @@
 package by.nc.sitkin.coffeemachine.entities;
 
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
+import by.nc.sitkin.coffeemachine.exceptions.MissingIngredientException;
 import by.nc.sitkin.coffeemachine.files.FileWorker;
 import by.nc.sitkin.coffeemachine.enums.Choice;
 
@@ -39,13 +40,9 @@ public class CoffeeMachine {
         this.ingredientSet = ingredientSet;
     }
 
-    public void produceItem(Choice choice) {
-        if (this.ingredientSet.isEmpty()){
-            System.out.println("CoffeeMachine is empty, call admin");
-            return;
-        }
-
+    public void produceItem(Choice choice) throws MissingIngredientException {
         Drink drink = null;
+
         switch (choice){
             case BLACKCOFFEE:
                 drink = produceBlackCoffee();
@@ -66,7 +63,7 @@ public class CoffeeMachine {
     }
 
 
-    private Drink produceBlackCoffee() {
+    private Drink produceBlackCoffee() throws MissingIngredientException {
 
         ListIterator<List<Ingredient>> iterator = this.ingredientSet.listIterator();
         List<Ingredient> list;
@@ -74,21 +71,30 @@ public class CoffeeMachine {
         Cash cash;
 
         list = iterator.next();
+        if (list.isEmpty()){
+            throw new MissingIngredientException("Coffee");
+        }
         cash = list.get(0).getCost();
         set.add(list.remove(0));
         return new Drink("BlackCoffee", cash, set);
     }
 
-    private Drink produceDulcetCoffee() {
+    private Drink produceDulcetCoffee() throws MissingIngredientException {
         ListIterator<List<Ingredient>> iterator = this.ingredientSet.listIterator();
         List<Ingredient> list;
         HashSet<Ingredient> set = new HashSet<>();
         Cash cash;
 
         list = iterator.next();
+        if (list.isEmpty()){
+            throw new MissingIngredientException("Sugar");
+        }
         cash = list.get(0).getCost();
         set.add(list.remove(0));
         list = iterator.next();
+        if (list.isEmpty()){
+            throw new MissingIngredientException("Sugar");
+        }
         try {
             cash.setDollars(cash.getDollars() + list.get(0).getCost().getDollars());
             cash.setCents(cash.getCents() + list.get(0).getCost().getCents());
@@ -100,17 +106,23 @@ public class CoffeeMachine {
         return new Drink("DulcetCoffee", cash, set);
     }
 
-    private Drink produceMilkyCoffee() {
+    private Drink produceMilkyCoffee() throws MissingIngredientException {
         ListIterator<List<Ingredient>> iterator = this.ingredientSet.listIterator();
         List<Ingredient> list;
         HashSet<Ingredient> set = new HashSet<>();
         Cash cash;
 
         list = iterator.next();
+        if (list.isEmpty()){
+            throw new MissingIngredientException("Milk");
+        }
         cash = list.get(0).getCost();
         set.add(list.remove(0));
         iterator.next();
         list = iterator.next();
+        if (list.isEmpty()){
+            throw new MissingIngredientException("Milk");
+        }
         try {
             cash.setDollars(cash.getDollars() + list.get(0).getCost().getDollars());
             cash.setCents(cash.getCents() + list.get(0).getCost().getCents());

@@ -3,6 +3,7 @@ package by.nc.sitkin.coffeemachine.commands;
 import by.nc.sitkin.coffeemachine.converters.TypeConverter;
 import by.nc.sitkin.coffeemachine.entities.CoffeeMachine;
 import by.nc.sitkin.coffeemachine.enums.Choice;
+import by.nc.sitkin.coffeemachine.exceptions.MissingIngredientException;
 import by.nc.sitkin.coffeemachine.interfaces.Command;
 
 public class SelectDrinkCommand implements Command {
@@ -36,7 +37,16 @@ public class SelectDrinkCommand implements Command {
                 return;
         }
 
-        coffeeMachine.produceItem(choice);
+        if (coffeeMachine.getIngredientSet().isEmpty()){
+            System.out.println("CoffeeMachine is empty, call admin");
+            return;
+        }
+
+        try {
+            coffeeMachine.produceItem(choice);
+        } catch (MissingIngredientException e) {
+            System.out.println("Missing" + e.getMessage() + ", call admin");
+        }
 
     }
 }
