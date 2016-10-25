@@ -1,20 +1,22 @@
 package by.nc.sitkin.coffeemachine.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Drink implements Comparable<Drink>{
     private String name;
     private Cash cost;
-    private List<Ingredient> list;
+    private Set<Ingredient> set;
 
     public Drink(){
-        this.list = new ArrayList<>();
+        this.set = new HashSet<>();
     }
 
-    public Drink(String name, Cash cost, List<Ingredient> list){
+    public Drink(String name, Cash cost, Set<Ingredient> set){
         this.name = name;
-        this.list = list;
+        this.set = set;
         this.cost = cost;
     }
 
@@ -34,12 +36,12 @@ public class Drink implements Comparable<Drink>{
         this.cost = cost;
     }
 
-    public List<Ingredient> getList(){
-        return this.list;
+    public Set<Ingredient> getSet(){
+        return this.set;
     }
 
-    public void setList(List<Ingredient> list){
-        this.list = list;
+    public void setSet(Set<Ingredient> set){
+        this.set = set;
     }
 
     @Override
@@ -47,7 +49,7 @@ public class Drink implements Comparable<Drink>{
         if (getClass() != obj.getClass())
             return false;
         Drink other = (Drink) obj;
-        return super.equals(other) && getList().equals(other.getList());
+        return super.equals(other) && getSet().equals(other.getSet());
     }
 
     @Override
@@ -55,7 +57,7 @@ public class Drink implements Comparable<Drink>{
         final int prime = 7;
         int result = 31;
         result = prime * result + super.hashCode();
-        result = prime * result + getList().hashCode();
+        result = prime * result + getSet().hashCode();
         return result;
     }
 

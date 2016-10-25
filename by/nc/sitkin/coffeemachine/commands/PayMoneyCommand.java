@@ -3,6 +3,7 @@ package by.nc.sitkin.coffeemachine.commands;
 import by.nc.sitkin.coffeemachine.entities.User;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 import by.nc.sitkin.coffeemachine.files.FileWorker;
+import by.nc.sitkin.coffeemachine.interfaces.Command;
 
 import java.io.FileNotFoundException;
 import java.util.regex.Pattern;
@@ -19,7 +20,7 @@ public class PayMoneyCommand implements Command {
 
         String resultStr;
         try {
-            resultStr = FileWorker.read("totalPrice.txt.txt");
+            resultStr = FileWorker.read("totalPrice.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             resultStr = "0.0";
@@ -35,6 +36,7 @@ public class PayMoneyCommand implements Command {
             currentHuman.getCash().setDollars(dollars);
             currentHuman.getCash().setCents(cents);
             System.out.println("Success operation!");
+            FileWorker.write("totalPrice.txt", "");
         } catch (InvalidValueException e) {
             System.out.println("You can't afford to buy it!");
         }

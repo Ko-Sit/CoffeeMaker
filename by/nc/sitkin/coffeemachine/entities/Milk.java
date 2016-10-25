@@ -1,6 +1,8 @@
 package by.nc.sitkin.coffeemachine.entities;
 
-public class Milk extends Ingredient implements Countable{
+import by.nc.sitkin.coffeemachine.interfaces.Countable;
+
+public class Milk extends Ingredient implements Countable {
     private static int counter = 0;
 
     public Milk(){

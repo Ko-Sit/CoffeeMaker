@@ -2,6 +2,7 @@ package by.nc.sitkin.coffeemachine.commands;
 
 import by.nc.sitkin.coffeemachine.entities.Admin;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
+import by.nc.sitkin.coffeemachine.interfaces.Command;
 
 public class FillMachineCommand implements Command {
     private Admin currentHuman;

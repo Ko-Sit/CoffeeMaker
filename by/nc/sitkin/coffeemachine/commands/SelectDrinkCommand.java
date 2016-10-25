@@ -3,6 +3,7 @@ package by.nc.sitkin.coffeemachine.commands;
 import by.nc.sitkin.coffeemachine.converters.TypeConverter;
 import by.nc.sitkin.coffeemachine.entities.CoffeeMachine;
 import by.nc.sitkin.coffeemachine.enums.Choice;
+import by.nc.sitkin.coffeemachine.interfaces.Command;
 
 public class SelectDrinkCommand implements Command {
     private CoffeeMachine coffeeMachine;

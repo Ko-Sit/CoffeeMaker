@@ -1,5 +1,6 @@
 package by.nc.sitkin.coffeemachine.entities;
 
+import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 import by.nc.sitkin.coffeemachine.files.FileWorker;
 import by.nc.sitkin.coffeemachine.enums.Choice;
 
@@ -43,34 +44,82 @@ public class CoffeeMachine {
             System.out.println("CoffeeMachine is empty, call admin");
             return;
         }
-        int dollars = 0;
-        int cents = 0;
 
-        ListIterator<List<Ingredient>> iterator = this.ingredientSet.listIterator();
-        List<Ingredient> list;
-
-        while (iterator.hasNext()){
-            list = iterator.next();
-            dollars += list.get(0).getCost().dollars;
-            cents += list.get(0).getCost().cents;
-            list.remove(0);
+        Drink drink = null;
+        switch (choice){
+            case BLACKCOFFEE:
+                drink = produceBlackCoffee();
+                break;
+            case DULCETCOFFEE:
+                drink = produceDulcetCoffee();
+                break;
+            case MILKYCOFFEE:
+                drink = produceMilkyCoffee();
+                break;
         }
-        dollars += cents / 100;
-        cents %= 100;
+        int dollars = drink.getCost().getDollars();
+        int cents = drink.getCost().getCents();
+
         System.out.println("You'll pay:" + dollars + "." + cents);
 
         FileWorker.update("totalPrice.txt", dollars, cents);
+    }
 
-        switch (choice){
-            case BLACKCOFFEE:
-                //Drink BLACKCOFFEE = new Drink("blackcoffee", )
-                break;
-            case DULCETCOFFEE:
-                break;
-            case MILKYCOFFEE:
-                break;
+
+    private Drink produceBlackCoffee() {
+
+        ListIterator<List<Ingredient>> iterator = this.ingredientSet.listIterator();
+        List<Ingredient> list;
+        HashSet<Ingredient> set = new HashSet<>();
+        Cash cash;
+
+        list = iterator.next();
+        cash = list.get(0).getCost();
+        set.add(list.remove(0));
+        return new Drink("BlackCoffee", cash, set);
+    }
+
+    private Drink produceDulcetCoffee() {
+        ListIterator<List<Ingredient>> iterator = this.ingredientSet.listIterator();
+        List<Ingredient> list;
+        HashSet<Ingredient> set = new HashSet<>();
+        Cash cash;
+
+        list = iterator.next();
+        cash = list.get(0).getCost();
+        set.add(list.remove(0));
+        list = iterator.next();
+        try {
+            cash.setDollars(cash.getDollars() + list.get(0).getCost().getDollars());
+            cash.setCents(cash.getCents() + list.get(0).getCost().getCents());
         }
+        catch (InvalidValueException e){
+            e.printStackTrace();
+        }
+        set.add(list.remove(0));
+        return new Drink("DulcetCoffee", cash, set);
+    }
 
+    private Drink produceMilkyCoffee() {
+        ListIterator<List<Ingredient>> iterator = this.ingredientSet.listIterator();
+        List<Ingredient> list;
+        HashSet<Ingredient> set = new HashSet<>();
+        Cash cash;
+
+        list = iterator.next();
+        cash = list.get(0).getCost();
+        set.add(list.remove(0));
+        iterator.next();
+        list = iterator.next();
+        try {
+            cash.setDollars(cash.getDollars() + list.get(0).getCost().getDollars());
+            cash.setCents(cash.getCents() + list.get(0).getCost().getCents());
+        }
+        catch (InvalidValueException e){
+            e.printStackTrace();
+        }
+        set.add(list.remove(0));
+        return new Drink("MilkyCoffee", cash, set);
     }
 
     @Override

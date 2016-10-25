@@ -1,6 +1,6 @@
 package by.nc.sitkin.coffeemachine.entities;
 
-public class User extends Human{
+public class User extends Person {
     private Cash cash;
 
     public User(){

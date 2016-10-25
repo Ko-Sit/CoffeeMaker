@@ -1,8 +1,7 @@
 package by.nc.sitkin.coffeemachine.menus;
 
-import by.nc.sitkin.coffeemachine.commands.Command;
+import by.nc.sitkin.coffeemachine.interfaces.Command;
 import by.nc.sitkin.coffeemachine.converters.TypeConverter;
-import by.nc.sitkin.coffeemachine.exceptions.WrongCommandException;
 
 import java.util.HashMap;
 import java.util.Map;

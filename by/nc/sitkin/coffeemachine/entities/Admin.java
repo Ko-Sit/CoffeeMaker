@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Admin extends Human{
-    private CoffeeMachine coffeeMachine;
+public class Admin extends Person {
+    private transient CoffeeMachine coffeeMachine;
 
     public Admin(){
 

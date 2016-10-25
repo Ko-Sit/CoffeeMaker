@@ -3,10 +3,9 @@ package by.nc.sitkin.coffeemachine.menus;
 import by.nc.sitkin.coffeemachine.commands.*;
 import by.nc.sitkin.coffeemachine.entities.Admin;
 import by.nc.sitkin.coffeemachine.entities.CoffeeMachine;
-import by.nc.sitkin.coffeemachine.entities.Human;
+import by.nc.sitkin.coffeemachine.entities.Person;
 import by.nc.sitkin.coffeemachine.entities.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,11 +18,11 @@ public class CurrentMenu {
         return menu;
     }
 
-    public void setDefaultMenu(String startMenuDescription[], List<Human> humans, CoffeeMachine coffeeMachine) {
+    public void setDefaultMenu(String startMenuDescription[], List<Person> persons, CoffeeMachine coffeeMachine) {
         Menu startMenu = new Menu(startMenuDescription);
-        startMenu.setCommand("create user", new CreateUserCommand(humans));
-        startMenu.setCommand("create admin", new CreateAdminCommand(humans, coffeeMachine));
-        startMenu.setCommand("change human", new ChangeHumanCommand(humans));
+        startMenu.setCommand("create user", new CreateUserCommand(persons));
+        startMenu.setCommand("create admin", new CreateAdminCommand(persons, coffeeMachine));
+        startMenu.setCommand("change person", new ChangePersonCommand(persons));
         startMenu.setCommand("exit", new ExitCommand());
         this.menu = startMenu;
     }

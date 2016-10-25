@@ -2,18 +2,19 @@ package by.nc.sitkin.coffeemachine.commands;
 
 import by.nc.sitkin.coffeemachine.converters.TypeConverter;
 import by.nc.sitkin.coffeemachine.entities.Cash;
-import by.nc.sitkin.coffeemachine.entities.Human;
+import by.nc.sitkin.coffeemachine.entities.Person;
 import by.nc.sitkin.coffeemachine.entities.User;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
+import by.nc.sitkin.coffeemachine.interfaces.Command;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class CreateUserCommand implements Command {
-    private List<Human> humans;
+    private List<Person> persons;
 
-    public CreateUserCommand(List<Human> humans) {
-        this.humans = humans;
+    public CreateUserCommand(List<Person> persons) {
+        this.persons = persons;
     }
 
     @Override
@@ -41,6 +42,6 @@ public class CreateUserCommand implements Command {
                 System.out.println("Wrong values!");
             }
         }
-        humans.add(new User(name, surname, cash));
+        persons.add(new User(name, surname, cash));
     }
 }

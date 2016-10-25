@@ -1,15 +1,17 @@
 package by.nc.sitkin.coffeemachine.entities;
 
-public class Human {
+import java.io.Serializable;
+
+public class Person implements Serializable {
     protected String name;
     protected String surname;
 
-    public Human(){
+    public Person(){
         this.name = "N/A";
         this.surname = "N/A";
     }
 
-    public Human(String name, String surname){
+    public Person(String name, String surname){
         this.name = name;
         this.surname = surname;
     }
@@ -38,7 +40,7 @@ public class Human {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Human other = (Human) obj;
+        Person other = (Person) obj;
         if (!getName().equals(other.getName()))
             return false;
         return getSurname().equals(other.getSurname());

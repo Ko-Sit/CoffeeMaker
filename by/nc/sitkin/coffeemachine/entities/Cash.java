@@ -3,8 +3,8 @@ package by.nc.sitkin.coffeemachine.entities;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 
 public class Cash {
-    int dollars;
-    int cents;
+    private int dollars;
+    private int cents;
 
     public Cash(){
         this.dollars = 0;
