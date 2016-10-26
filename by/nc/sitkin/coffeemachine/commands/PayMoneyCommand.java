@@ -23,7 +23,6 @@ public class PayMoneyCommand implements Command {
         try {
             resultStr = FileWorker.read("totalPrice.txt");
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             resultStr = "0.0";
         }
         String result[] = resultStr.split(Pattern.quote("."));

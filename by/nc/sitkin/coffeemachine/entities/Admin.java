@@ -5,7 +5,13 @@ import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+/**
+ *
+ * Class {@code Admin} rules condition of coffeemachine.
+ * after deserialize needs  to set current CM
+ *  @author konstantin sitkin
+ * @see    CoffeeMachine
+* */
 public class Admin extends Person {
     private transient CoffeeMachine coffeeMachine;
 
@@ -25,6 +31,10 @@ public class Admin extends Person {
         this.coffeeMachine = coffeeMachine;
     }
 
+    /**
+     * creates ingredients and puts it in coffeemachine
+     * @throws InvalidValueException if ingredient cost is invalid
+     */
     public void fillMachine() throws InvalidValueException{
         Random random = new Random();
         // TODO: 19-Oct-16  make factory

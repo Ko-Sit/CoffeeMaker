@@ -45,7 +45,7 @@ public class SelectDrinkCommand implements Command {
         try {
             coffeeMachine.produceItem(choice);
         } catch (MissingIngredientException e) {
-            System.out.println("Missing" + e.getMessage() + ", call admin");
+            System.out.println("Missing " + e.getMessage() + ", call admin");
         }
 
     }

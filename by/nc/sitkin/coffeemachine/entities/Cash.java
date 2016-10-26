@@ -2,15 +2,31 @@ package by.nc.sitkin.coffeemachine.entities;
 
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 
+/**
+ *
+ * Class {@code Cash} is used as cost of some goods
+ * or current money of {@code User}
+ * @author  konstantin sitkin
+ */
 public class Cash {
     private int dollars;
     private int cents;
 
+    /**
+     * default values should be zero
+     */
     public Cash(){
         this.dollars = 0;
         this.cents = 0;
     }
 
+    /**
+     *
+     * @param dollars positive int only
+     * @param cents   positive int only
+     * @throws InvalidValueException if parameters are invalid
+     * cent value can't be more 99, bigger values will be cast
+     */
     public Cash(int dollars, int cents) throws InvalidValueException{
         if (dollars < 0 || cents < 0){
             throw new InvalidValueException("Parameter is less than zero");
@@ -27,6 +43,11 @@ public class Cash {
         return this.cents;
     }
 
+    /**
+     *
+     * @param dollars positive int only
+     * @throws InvalidValueException if parameter is invalid
+     */
     public void setDollars(int dollars) throws InvalidValueException{
         if (dollars < 0) {
             throw new InvalidValueException("Dollar value is less than zero");
@@ -34,6 +55,11 @@ public class Cash {
         this.dollars = dollars;
     }
 
+    /**
+     *
+     * @param cents positive int only
+     * @throws InvalidValueException if parameter is invalid
+     */
     public void setCents(int cents) throws InvalidValueException{
         if (cents < 0){
             throw new InvalidValueException("Cents value is less than zero");

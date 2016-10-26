@@ -1,4 +1,6 @@
-package by.nc.sitkin.coffeemachine.entities;
+package by.nc.sitkin.coffeemachine.utils;
+
+import by.nc.sitkin.coffeemachine.entities.Cash;
 
 import java.util.Comparator;
 

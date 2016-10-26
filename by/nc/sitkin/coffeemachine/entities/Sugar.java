@@ -47,10 +47,8 @@ public class Sugar extends Ingredient implements Countable {
 
     @Override
     public String toString(){
-        return "" + getClass().getSimpleName() + "@" + hashCode();
+        return "" + getClass().getSimpleName() + "@" +
+                getCost().getDollars() + "." + getCost().getCents();
     }
 
-    protected void finalize ( ) {
-        decrement();
-    }
 }

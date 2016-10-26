@@ -159,6 +159,7 @@ public class CoffeeMachine {
 
     @Override
     public String toString(){
-        return "" + getClass().getSimpleName() + "@" + hashCode();
+        return "" + getClass().getSimpleName() + "@" +
+                getAdmin().getName() + " " + getAdmin().getSurname();
     }
 }

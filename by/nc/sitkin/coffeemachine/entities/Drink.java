@@ -62,6 +62,12 @@ public class Drink implements Comparable<Drink>{
     }
 
     @Override
+    public String toString(){
+        return "" + getClass().getSimpleName() + "@" +
+                getName() + getCost().getDollars() + "." + getCost().getCents();
+    }
+
+    @Override
     public int compareTo(Drink obj) {
         double money1 = this.cost.getDollars() + (double)(this.cost.getCents() / 100);
         double money2 = obj.cost.getDollars() + (double)(obj.cost.getCents() / 100);

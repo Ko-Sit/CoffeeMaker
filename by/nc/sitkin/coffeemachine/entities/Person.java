@@ -57,7 +57,8 @@ public class Person implements Serializable {
 
     @Override
     public String toString(){
-        return "" + getClass().getSimpleName() + "@" + hashCode();
+        return "" + getClass().getSimpleName() + "@" +
+                getName() + " " + getSurname();
     }
 }
 
