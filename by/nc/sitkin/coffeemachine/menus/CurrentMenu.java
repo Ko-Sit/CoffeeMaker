@@ -23,7 +23,7 @@ public class CurrentMenu {
         startMenu.setCommand("create user", new CreateUserCommand(persons));
         startMenu.setCommand("create admin", new CreateAdminCommand(persons, coffeeMachine));
         startMenu.setCommand("change person", new ChangePersonCommand(persons));
-        startMenu.setCommand("exit", new ExitCommand());
+        startMenu.setCommand("exit", new ExitCommand(persons));
         this.menu = startMenu;
     }
 
