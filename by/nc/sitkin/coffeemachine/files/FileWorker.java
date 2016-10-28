@@ -13,15 +13,12 @@ public class FileWorker {
             if (!file.exists()) {
                 file.createNewFile();
             }
-            PrintWriter out = new PrintWriter(file.getAbsoluteFile());
-            try {
+            try(PrintWriter out = new PrintWriter(file.getAbsoluteFile())){
                 out.print(text);
-            } finally {
-                out.close();
             }
         }
         catch(IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Some troubles with file writing..");
         }
     }
 
@@ -30,18 +27,15 @@ public class FileWorker {
         exists(fileName);
             File file = new File(fileName);
         try {
-            BufferedReader in = new BufferedReader(new FileReader(file.getName()));
-            try {
+            try(BufferedReader in = new BufferedReader(new FileReader(file.getName()))) {
                 String s;
                 while ((s = in.readLine()) != null) {
                     sb.append(s);
                     sb.append("\n");
                 }
-            } finally {
-                in.close();
             }
         } catch(IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Some troubles with file reading..");
         }
         return sb.toString();
     }

@@ -41,9 +41,9 @@ public class Admin extends Person {
         List<Ingredient> coffeeSet = new ArrayList<>();
         List<Ingredient> sugarSet = new ArrayList<>();
         List<Ingredient> milkSet = new ArrayList<>();
-        Cash coffeeCost = new Cash(15, 94);
-        Cash sugarCost = new Cash(0, 85);
-        Cash milkCost = new Cash(2, 77);
+        Cash coffeeCost = new Cash(10, 0);
+        Cash sugarCost = new Cash(0, 5);
+        Cash milkCost = new Cash(3, 0);
 
         for (int i = 0; i < random.nextInt(5) + 5; i++){
             coffeeSet.add(new Coffee(coffeeCost));

@@ -83,13 +83,19 @@ public class CoffeeMachine {
         ListIterator<List<Ingredient>> iterator = this.ingredientSet.listIterator();
         List<Ingredient> list;
         HashSet<Ingredient> set = new HashSet<>();
-        Cash cash;
+        Cash cash = new Cash();
 
         list = iterator.next();
         if (list.isEmpty()){
-            throw new MissingIngredientException("Sugar");
+            throw new MissingIngredientException("Coffee");
         }
-        cash = list.get(0).getCost();
+        try {
+            cash.setDollars(list.get(0).getCost().getDollars());
+            cash.setCents(list.get(0).getCost().getCents());
+        }
+        catch (InvalidValueException e){
+            e.printStackTrace();
+        }
         set.add(list.remove(0));
         list = iterator.next();
         if (list.isEmpty()){
@@ -110,13 +116,19 @@ public class CoffeeMachine {
         ListIterator<List<Ingredient>> iterator = this.ingredientSet.listIterator();
         List<Ingredient> list;
         HashSet<Ingredient> set = new HashSet<>();
-        Cash cash;
+        Cash cash = new Cash();
 
         list = iterator.next();
         if (list.isEmpty()){
-            throw new MissingIngredientException("Milk");
+            throw new MissingIngredientException("Coffee");
         }
-        cash = list.get(0).getCost();
+        try {
+            cash.setDollars(list.get(0).getCost().getDollars());
+            cash.setCents(list.get(0).getCost().getCents());
+        }
+        catch (InvalidValueException e){
+            e.printStackTrace();
+        }
         set.add(list.remove(0));
         iterator.next();
         list = iterator.next();
