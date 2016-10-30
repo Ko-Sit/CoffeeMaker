@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
  * Created by upsit on 21-Oct-16.
  */
 public class FileWorker {
-    public static void write(String fileName, String text) {
-        File file = new File(fileName);
+    public static void write(String filePath, String fileName, String text) {
+        File file = new File(filePath, fileName);
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -22,12 +22,12 @@ public class FileWorker {
         }
     }
 
-    public static String read(String fileName) throws FileNotFoundException {
+    public static String read(String filePath, String fileName) throws FileNotFoundException {
         StringBuilder sb = new StringBuilder();
-        exists(fileName);
-            File file = new File(fileName);
+        exists(filePath, fileName);
+            File file = new File(filePath, fileName);
         try {
-            try(BufferedReader in = new BufferedReader(new FileReader(file.getName()))) {
+            try(BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()))) {
                 String s;
                 while ((s = in.readLine()) != null) {
                     sb.append(s);
@@ -40,18 +40,18 @@ public class FileWorker {
         return sb.toString();
     }
 
-    private static void exists(String fileName) throws FileNotFoundException {
-        File file = new File(fileName);
+    private static void exists(String filePath, String fileName) throws FileNotFoundException {
+        File file = new File(filePath, fileName);
         if (!file.exists()){
-            throw new FileNotFoundException(file.getName());
+            throw new FileNotFoundException(file.getAbsolutePath());
         }
     }
 
-    public static void update(String fileName, int dollars, int cents){
+    public static void update(String filePath, String fileName, int dollars, int cents){
         String resultStr;
         try {
-            exists(fileName);
-            resultStr = read(fileName);
+            exists(filePath, fileName);
+            resultStr = read(filePath, fileName);
         } catch (FileNotFoundException e) {
             resultStr = "0.0";
         }
@@ -65,12 +65,12 @@ public class FileWorker {
         cents %= 100;
         // point moves trash to res[2]
         resultStr = "" + dollars + "." + cents + ".";
-        FileWorker.write(fileName, resultStr);
+        FileWorker.write(filePath, fileName, resultStr);
     }
 
-    public static void delete(String nameFile) throws FileNotFoundException {
-        exists(nameFile);
-        new File(nameFile).delete();
+    public static void delete(String filePath, String fileName) throws FileNotFoundException {
+        exists(filePath, fileName);
+        new File(filePath, fileName).delete();
     }
 }
 

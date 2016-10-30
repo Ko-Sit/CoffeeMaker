@@ -21,11 +21,14 @@ public class PayMoneyCommand implements Command {
         int dollars;
         int cents;
         String resultStr;
+        String path = "C:\\Users\\upsit\\IdeaProjects\\CoffeeMaker\\" +
+                "src\\by\\nc\\sitkin\\coffeemachine\\files\\input\\";
+        String name = "totalPrice.txt";
 
         if (currentHuman.getCash() == null)
             currentHuman.setCash(new Cash());
         try {
-            resultStr = FileWorker.read("totalPrice.txt");
+            resultStr = FileWorker.read(path, name);
         } catch (FileNotFoundException e) {
             resultStr = "0.0";
         }
@@ -49,6 +52,7 @@ public class PayMoneyCommand implements Command {
         } catch (InvalidValueException e) {
             System.out.println("You can't afford to buy it!");
         }
-        FileWorker.write("totalPrice.txt", "");
+
+        FileWorker.write(path, name, "");
     }
 }

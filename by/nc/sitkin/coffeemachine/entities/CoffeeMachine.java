@@ -58,8 +58,10 @@ public class CoffeeMachine {
         int cents = drink.getCost().getCents();
 
         System.out.println("You'll pay:" + dollars + "." + cents);
-
-        FileWorker.update("totalPrice.txt", dollars, cents);
+        String path = "C:\\Users\\upsit\\IdeaProjects\\CoffeeMaker\\" +
+                "src\\by\\nc\\sitkin\\coffeemachine\\files\\input\\";
+        String name = "totalPrice.txt";
+        FileWorker.update(path, name, dollars, cents);
     }
 
 
