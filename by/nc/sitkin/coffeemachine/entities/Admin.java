@@ -1,5 +1,6 @@
 package by.nc.sitkin.coffeemachine.entities;
 
+import by.nc.sitkin.coffeemachine.converters.TypeConverter;
 import by.nc.sitkin.coffeemachine.exceptions.InvalidValueException;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.Random;
 * */
 public class Admin extends Person {
     private transient CoffeeMachine coffeeMachine;
+    private static final int CAPACITY = 10;
 
     public Admin(){
 
@@ -36,28 +38,68 @@ public class Admin extends Person {
      * @throws InvalidValueException if ingredient cost is invalid
      */
     public void fillMachine() throws InvalidValueException{
-        Random random = new Random();
+        TypeConverter converter = new TypeConverter();
         // TODO: 19-Oct-16  make factory
+        if (this.coffeeMachine.getIngredientSet().isEmpty()) {
+           initIngredientSet();
+        }
+        int chosenFiller = converter.getInt("Input number");
+        switch (chosenFiller){
+            case 1:
+                fillCoffee();
+                break;
+            case 2:
+                fillSugar();
+                break;
+            case 3:
+                fillMilk();
+                break;
+            case 4:
+                fillCoffee();
+                fillSugar();
+                fillMilk();
+        }
+
+        System.out.println("CoffeeMachine was refilled.");
+    }
+
+    private void initIngredientSet() {
         List<Ingredient> coffeeSet = new ArrayList<>();
         List<Ingredient> sugarSet = new ArrayList<>();
         List<Ingredient> milkSet = new ArrayList<>();
-        Cash coffeeCost = new Cash(10, 0);
-        Cash sugarCost = new Cash(0, 5);
-        Cash milkCost = new Cash(3, 0);
-
-        for (int i = 0; i < random.nextInt(5) + 5; i++){
-            coffeeSet.add(new Coffee(coffeeCost));
-            sugarSet.add(new Sugar(sugarCost));
-            milkSet.add(new Milk(milkCost));
-        }
 
         List<List<Ingredient>> ingredientSet = new ArrayList<>();
         ingredientSet.add(coffeeSet);
         ingredientSet.add(sugarSet);
         ingredientSet.add(milkSet);
         this.coffeeMachine.setIngredientSet(ingredientSet);
-        System.out.println("CoffeeMachine was refilled.");
+    }
 
+    private void fillCoffee() throws InvalidValueException {
+        List<Ingredient> coffeeSet = this.coffeeMachine.getIngredientSet().get(0);
+        Cash coffeeCost = new Cash(10, 0);
+        coffeeSet.clear();
+        for (int i = 0; i < CAPACITY && coffeeSet.size() < CAPACITY; i++){
+            coffeeSet.add(new Coffee(coffeeCost));
+        }
+    }
+
+    private void fillSugar() throws InvalidValueException {
+        List<Ingredient> sugarSet = this.coffeeMachine.getIngredientSet().get(1);
+        Cash sugarCost = new Cash(0, 5);
+
+        for (int i = 0; i < CAPACITY && sugarSet.size() < CAPACITY; i++){
+            sugarSet.add(new Coffee(sugarCost));
+        }
+    }
+
+    private void fillMilk() throws InvalidValueException {
+        List<Ingredient> milkSet = this.coffeeMachine.getIngredientSet().get(2);
+        Cash milkCost = new Cash(3, 0);
+
+        for (int i = 0; i < CAPACITY && milkSet.size() < CAPACITY; i++){
+            milkSet.add(new Coffee(milkCost));
+        }
     }
 
     @Override

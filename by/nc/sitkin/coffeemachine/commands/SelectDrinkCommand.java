@@ -16,6 +16,7 @@ public class SelectDrinkCommand implements Command {
     @Override
     public void execute() {
         TypeConverter converter = new TypeConverter();
+        System.out.println("-----------------");
         System.out.println("1.coffee");
         System.out.println("2.coffee + sugar");
         System.out.println("3.coffee + milk");

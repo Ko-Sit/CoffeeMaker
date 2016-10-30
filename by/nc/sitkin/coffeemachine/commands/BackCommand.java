@@ -1,6 +1,5 @@
 package by.nc.sitkin.coffeemachine.commands;
 
-
 import by.nc.sitkin.coffeemachine.interfaces.Command;
 
 /**

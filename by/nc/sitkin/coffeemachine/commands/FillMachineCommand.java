@@ -13,6 +13,13 @@ public class FillMachineCommand implements Command {
 
     @Override
     public void execute() {
+        System.out.println("-----------------");
+        System.out.println("1.fill coffee");
+        System.out.println("2.fill sugar");
+        System.out.println("3.fill milk");
+        System.out.println("4.fill all");
+        System.out.println("-----------------");
+
         try {
             currentHuman.fillMachine();
         }

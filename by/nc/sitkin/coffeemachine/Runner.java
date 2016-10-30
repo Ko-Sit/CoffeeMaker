@@ -20,7 +20,7 @@ public class Runner {
         CurrentMenu currentMenu = new CurrentMenu();
         String startMenuDescription[] = {"create user", "create admin", "change person", "exit"};
         String userMenuDescription[] = {"select drink", "pay money", "back"};
-        String adminMenuDescription[] = {"fill machine", "back"};
+        String adminMenuDescription[] = {"fill machine", "show status", "back"};
         int commandIndex;
 
         while(true){

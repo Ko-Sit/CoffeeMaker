@@ -38,7 +38,6 @@ public class CreateUserCommand implements Command {
                 cash = new Cash(dollars, cents);
                 break;
             } catch (InvalidValueException e) {
-                //e.printStackTrace();
                 System.out.println("Wrong values!");
             }
         }

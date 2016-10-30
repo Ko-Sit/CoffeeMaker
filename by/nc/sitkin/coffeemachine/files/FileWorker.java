@@ -53,7 +53,6 @@ public class FileWorker {
             exists(fileName);
             resultStr = read(fileName);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             resultStr = "0.0";
         }
         if (resultStr.equals("")) {

@@ -38,6 +38,7 @@ public class CurrentMenu {
     public void setAdminMenu(String adminMenuDescription[], Admin admin){
         Menu adminMenu = new Menu(adminMenuDescription);
         adminMenu.setCommand("fill machine", new FillMachineCommand(admin));
+        adminMenu.setCommand("show status", new ShowStatusCommand(admin.getCoffeeMachine()));
         adminMenu.setCommand("back", new BackCommand());
         this.menu = adminMenu;
     }

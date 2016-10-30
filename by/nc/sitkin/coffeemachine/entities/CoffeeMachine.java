@@ -94,7 +94,7 @@ public class CoffeeMachine {
             cash.setCents(list.get(0).getCost().getCents());
         }
         catch (InvalidValueException e){
-            e.printStackTrace();
+
         }
         set.add(list.remove(0));
         list = iterator.next();
@@ -106,7 +106,6 @@ public class CoffeeMachine {
             cash.setCents(cash.getCents() + list.get(0).getCost().getCents());
         }
         catch (InvalidValueException e){
-            e.printStackTrace();
         }
         set.add(list.remove(0));
         return new Drink("DulcetCoffee", cash, set);
@@ -127,7 +126,6 @@ public class CoffeeMachine {
             cash.setCents(list.get(0).getCost().getCents());
         }
         catch (InvalidValueException e){
-            e.printStackTrace();
         }
         set.add(list.remove(0));
         iterator.next();
@@ -140,7 +138,6 @@ public class CoffeeMachine {
             cash.setCents(cash.getCents() + list.get(0).getCost().getCents());
         }
         catch (InvalidValueException e){
-            e.printStackTrace();
         }
         set.add(list.remove(0));
         return new Drink("MilkyCoffee", cash, set);

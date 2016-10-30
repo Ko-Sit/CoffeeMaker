@@ -2,12 +2,8 @@ package by.nc.sitkin.coffeemachine.commands;
 
 import by.nc.sitkin.coffeemachine.converters.TypeConverter;
 import by.nc.sitkin.coffeemachine.entities.Person;
-import by.nc.sitkin.coffeemachine.entities.User;
 import by.nc.sitkin.coffeemachine.interfaces.Command;
-import by.nc.sitkin.coffeemachine.utils.UserComparator;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ChangePersonCommand implements Command {
